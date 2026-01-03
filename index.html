@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>NES Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(120deg, #1a1a1a, #111111);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+
+  header {
+    background-color: #FF1644;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #000;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .version {
+    border: 3px solid #FF1644;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .version::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 22, 68, 0.1);
+    transform: rotate(25deg);
+    pointer-events: none;
+  }
+
+  .version:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #FF1644;
+  }
+
+  .version h2 {
+    color: #FF1644;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .version h2::before {
+    content: '🎮';
+  }
+
+  .games-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0;
+  }
+
+  .games-list li {
+    padding: 5px 0;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+  }
+
+  .games-list li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #FF1644;
+  }
+
+  .download {
+    display: inline-block;
+    background-color: #FF1644;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #FF1644;
+  }
+
+  .download:hover {
+    background-color: #e0123c;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #FF1644;
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #FF1644;
+    line-height: 1.6em;
+  }
+</style>
+</head>
+<body>
+
+<header>NES Library</header>
+
+<main>
+  <div class="version">
+    <h2>Full Version</h2>
+    <p>Includes over <strong>800 NES games</strong> in total.</p>
+    <p>You can download the full project version from MediaFire.</p>
+    <a href="https://www.mediafire.com/file/2d2yh0l48rcfokd/FULL.swb/file" target="_blank" class="download">Download Full Version</a>
+  </div>
+
+  <div class="version">
+    <h2>Beta Version</h2>
+    <p>Includes the following games only:</p>
+    <ul class="games-list" id="betaGames">
+      <li>SMB1</li>
+      <li>SMB2</li>
+    </ul>
+    <p>You can download the beta version from MediaFire.</p>
+    <a href="https://www.mediafire.com/file/xf417c26hberqyy/BETA.swb/file" target="_blank" class="download">Download Beta Version</a>
+  </div>
+</main>
+
+<footer>
+  Special thanks to ChatGPT for helping build this NES Library project! ❤️<br>
+  Thanks also to <strong>Super Games</strong> for providing the assets used in this project.
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.download');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      alert('Redirecting to MediaFire for download...');
+    });
+  });
+
+  // Simulate saving files like Android ListView example
+  const betaGames = document.getElementById('betaGames');
+  betaGames.querySelectorAll('li').forEach(item => {
+    item.addEventListener('click', () => {
+      alert(item.textContent + " would be saved to Downloads folder.");
+    });
+  });
+
+  // Prevent zoom and pinch
+  window.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=')) || e.key === 'Meta') {
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+  window.addEventListener('gesturechange', function(e) { e.preventDefault(); });
+  window.addEventListener('gestureend', function(e) { e.preventDefault(); });
+</script>
+
+</body>
+</html>
